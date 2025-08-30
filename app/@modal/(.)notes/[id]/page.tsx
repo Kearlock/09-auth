@@ -1,7 +1,7 @@
 // app/@modal/(.)notes/[id]/page.tsx
 
 // import Modal from "@/components/Modal/Modal";
-import { fetchNoteById } from "@/lib/api";
+import { fetchNotebyIdServer } from "@/lib/api/serverApi";
 import NotePreview from "@/components/NotePreview/NotePreview";
 import {
   dehydrate,
@@ -19,7 +19,7 @@ const NotePreviewModal = async ({ params }: Props) => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["note", id],
-    queryFn: () => fetchNoteById(id),
+    queryFn: () => fetchNotebyIdServer(id),
   });
 
   return (

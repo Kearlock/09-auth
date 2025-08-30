@@ -27,8 +27,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/notes/page.tsx.old",
-    "app/notes/Notes.client.tsx.old"
+    "app/(private-routes)/notes/page.tsx.old",
+    "app/(private-routes)/notes/Notes.client.tsx.old",
+    "lib/api.old"
   ],
   "exclude": ["node_modules"]
 }

@@ -3,7 +3,7 @@
 import css from "./NoteForm.module.css";
 import type { NoteTag, Note } from "@/types/note";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createNote } from "@/lib/api";
+import { createNote } from "@/lib/api/clientApi";
 import { AxiosError } from "axios";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import { useNoteStore } from "@/lib/store/noteStore";

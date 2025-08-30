@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { fetchNotes } from "@/lib/api";
+import { fetchNotes } from "@/lib/api/clientApi";
 import { useDebounce } from "use-debounce";
 import type { Note, NoteTag } from "@/types/note";
 import css from "./NotesPage.module.css";
@@ -17,11 +17,11 @@ import Link from "next/link";
 
 type FetchNotesResponse = {
   notes: Note[];
-  page: number;
-  perPage: number;
+  // page: number;
+  // perPage: number;
   totalPages: number;
-  totalNotes?: number;
-  tag?: NoteTag;
+  // totalNotes?: number;
+  // tag?: NoteTag;
 };
 
 type Props = {
@@ -32,7 +32,6 @@ type Props = {
 export default function NotesClient({ initialData, tag }: Props) {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
-  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [debouncedSearch] = useDebounce(search, 500);
   const queryClient = useQueryClient();
@@ -42,7 +41,7 @@ export default function NotesClient({ initialData, tag }: Props) {
     queryFn: () =>
       fetchNotes({
         page,
-        perPage: 12,
+        // perPage: 12,
         search: debouncedSearch,
         tag: tag,
       }),

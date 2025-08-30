@@ -1,4 +1,4 @@
-import { fetchNotes } from "@/lib/api";
+import { fetchNotesServer } from "@/lib/api/serverApi";
 import NotesClient from "./Notes.client";
 import { NoteTag } from "@/types/note";
 import { Metadata } from "next";
@@ -24,7 +24,10 @@ export async function generateMetadata({
         TagString === "All"
           ? "All stored notes"
           : `The ${TagString} related notes`,
-      url: "https://07-routing-nextjs-omega-ten.vercel.app",
+      url:
+        TagString === "All"
+          ? "https://08-zustand-self.vercel.app/notes/filter/All"
+          : `https://08-zustand-self.vercel.app/notes/filter/${TagString}`,
       images: [
         {
           url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
@@ -43,11 +46,13 @@ export default async function NotesPage({ params }: NotesPageProps) {
   const filterTag =
     getTagString === "All" || undefined ? undefined : (getTagString as NoteTag);
 
-  const initialData = await fetchNotes({
-    page: 1,
-    perPage: 12,
-    ...(filterTag ? { filterTag } : {}),
-  });
+  const initialData = await fetchNotesServer(
+    "",
+    1, // search: "",
+    // page: 1,
+    // perPage: 12,
+    filterTag
+  );
 
   return <NotesClient initialData={initialData} tag={filterTag} />;
 }
