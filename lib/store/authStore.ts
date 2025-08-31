@@ -8,7 +8,7 @@ interface AuthState {
   clearAuth: () => void;
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
+export const useAuthStore = create<AuthState>()((set) => ({
   authOk: false,
   user: null,
   setAuth: (user: User) =>

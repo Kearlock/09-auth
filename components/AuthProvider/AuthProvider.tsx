@@ -24,5 +24,5 @@ export default function AuthProvider({ children }: Props) {
     fetchUser();
   }, [setAuth, clearAuth]);
 
-  return { children };
+  return <>{children}</>;
 }

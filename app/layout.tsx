@@ -6,6 +6,7 @@ import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import AuthProvider from "@/components/AuthProvider/AuthProvider";
 
 //   variable: "--font-geist-sans",
 //   subsets: ["latin"],
@@ -52,12 +53,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable}`}>
         <TanStackProvider>
-          <Header />
-          {children}
-          {modal}
-          <div id="modal-root"></div>
-          <Footer />
-          <ReactQueryDevtools initialIsOpen={false} />
+          <AuthProvider>
+            <Header />
+            {children}
+            {modal}
+            <div id="modal-root"></div>
+            <Footer />
+            <ReactQueryDevtools initialIsOpen={false} />
+          </AuthProvider>
         </TanStackProvider>
       </body>
     </html>

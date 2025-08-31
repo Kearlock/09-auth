@@ -1,17 +1,13 @@
-import React from "react";
+"use client";
 
-const ProfileLayout = ({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) => {
-  return (
-    <div>
-      <h1>ProfileLayout</h1>
-      <br />
-      {children}
-    </div>
-  );
-};
+import { useEffect, ReactNode } from "react";
+import { useRouter } from "next/navigation";
 
-export default ProfileLayout;
+export default function ProfileLayout(children: ReactNode) {
+  const router = useRouter();
+  useEffect(() => {
+    router.refresh();
+  }, [router]);
+
+  return <>{children}</>;
+}
